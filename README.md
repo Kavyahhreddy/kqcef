@@ -64,24 +64,6 @@ The default cutoff is **12 hours before delivery** and is an explicit analytical
 - `GET /api/observations?date=2026-01-15` — observations for a delivery date
 - `GET /api/forecasts?date=2026-01-15` — matched series for a delivery date
 
-## Verify before relying on results
-
-Elexon data schemas and query parameters can evolve. Before final submission, confirm that the current FUELHH and WINDFOR endpoints return records for January 2026 and that the response fields match the adapter. Do not treat an empty dataset or an API error as evidence of zero wind generation. Run the tests and build the frontend before recording a demo.
-
-Backend tests can be run locally from the `backend` directory:
-
-```bash
-python -m pip install -r requirements.txt
-pytest -q
-```
-
-Frontend build can be checked from the `frontend` directory:
-
-```bash
-npm install
-npm run build
-```
-
 ## AI assistance disclosure
 
 OpenAI ChatGPT was used to assist with project scaffolding, implementation drafting, test correction, and documentation. The project should be personally reviewed, run, and validated before submission.
