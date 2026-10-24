@@ -82,15 +82,6 @@ npm install
 npm run build
 ```
 
-## Deployment and demo
-
-No live deployment URL or demo video is claimed by this repository yet. Add only real, tested public URLs here after deploying the frontend and backend and uploading the unlisted video.
-
-- Live app: **pending deployment**
-- Demo video: **pending recording and upload**
-
-The recording guide in `docs/DEMO_SCRIPT.md` is designed for a customer overview (up to 5 minutes) followed by a technical handover (up to 5 minutes).
-
 ## AI assistance disclosure
 
 OpenAI ChatGPT was used to assist with project scaffolding, implementation drafting, test correction, and documentation. The project should be personally reviewed, run, and validated before submission.
