@@ -68,6 +68,7 @@ export default function App() {
         <MetricCard title="Mean absolute error" value={loading ? "…" : number(metrics.mae)} unit="MW" hint="Average absolute forecast gap" icon={Activity} />
         <MetricCard title="Root mean square error" value={loading ? "…" : number(metrics.rmse)} unit="MW" hint="Penalises larger misses" icon={ArrowUpRight} />
         <MetricCard title="Mean bias error" value={loading ? "…" : number(metrics.bias)} unit="MW" hint={metrics.bias > 0 ? "Forecasts high on average" : metrics.bias < 0 ? "Forecasts low on average" : "Signed forecast error"} icon={ArrowDownRight} />
+        <MetricCard title="Mean absolute percentage error" value={loading ? "…" : number(metrics.mape)} unit="%" hint="Absolute error as a share of actual" icon={Activity} />
         <MetricCard title="Matched intervals" value={loading ? "…" : number(validCount, 0)} unit="" hint="Forecast and actual pairs" icon={CheckCircle2} />
       </div>
 
