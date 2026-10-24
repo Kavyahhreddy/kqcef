@@ -1,14 +1,23 @@
-const API_BASE = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8000").replace(/\/$/, "");
+// In production the UI and API share one origin, so use relative URLs.
+// Vite development keeps the local FastAPI server on port 8000.
+const API_BASE = (
+  import.meta.env.VITE_API_BASE_URL ??
+  (import.meta.env.DEV ? "http://localhost:8000" : "")
+).replace(/\/$/, "");
 
-export async function getAccuracy() {
-  const response = await fetch(`${API_BASE}/api/accuracy?start=2026-01-01&end=2026-01-31`);
+async function request(path) {
+  const response = await fetch(`${API_BASE}${path}`);
+  const body = await response.json().catch(() => ({}));
   if (!response.ok) {
-    let detail = `Request failed with HTTP ${response.status}`;
-    try {
-      const body = await response.json();
-      if (body.detail) detail = body.detail;
-    } catch {}
-    throw new Error(detail);
+    throw new Error(body.detail || `Request failed (HTTP ${response.status})`);
   }
-  return response.json();
+  return body;
+}
+
+export function getAccuracy(start = "2026-01-01", end = "2026-01-31") {
+  return request(`/api/accuracy?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`);
+}
+
+export function getObservations(date) {
+  return request(`/api/observations?date=${encodeURIComponent(date)}`);
 }
