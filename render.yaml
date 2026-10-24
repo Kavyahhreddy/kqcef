@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: wind-intelligence-dashboard
+    runtime: docker
+    repo: https://github.com/Kavyahhreddy/kqcef
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: free
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: DECISION_CUTOFF_HOURS_BEFORE_DELIVERY
+        value: "12"
+      - key: CORS_ORIGINS
+        value: "*"
