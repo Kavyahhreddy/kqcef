@@ -48,3 +48,12 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: frontend
+
+  docker-image-build:
+    name: Docker image build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Build combined frontend and API image
+        run: docker build --tag wind-intelligence-test .
