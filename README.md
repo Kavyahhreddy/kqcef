@@ -6,7 +6,7 @@ A full-stack dashboard for analysing UK national wind generation forecasts again
 
 - **Frontend:** React, Vite, Recharts, Lucide
 - **Backend:** Python, FastAPI, pandas, NumPy, httpx
-- **Data source:** Elexon BMRS API
+- **Data source:** Elexon BMRS API (`WINDFOR` hourly wind forecasts matched to `FUELHH` half-hourly actual generation)
 - **Local orchestration:** Docker Compose
 
 ## Run locally
@@ -53,7 +53,7 @@ To stop the services, run `docker compose down`.
 
 ## Analysis
 
-The application joins national wind actuals to forecasts using delivery start time. For each delivery interval, the analysis selects the latest forecast published at or before the configured cutoff, then reports mean absolute error (MAE), root mean square error (RMSE), signed bias, MAPE where actual values are non-zero, and the number of matched observations.
+The application compares Elexon's hourly `WINDFOR` national wind forecasts with `FUELHH` half-hourly actual generation. The data is matched on the forecast delivery start timestamps, so the hourly forecast cadence yields 24 expected matches per complete day (744 for the 31 days of January 2026). For each forecast timestamp, the analysis selects the latest forecast published at or before the configured cutoff, then reports mean absolute error (MAE), root mean square error (RMSE), signed bias, MAPE where actual values are non-zero, and the number of matched forecast/actual observations.
 
 The default cutoff is **12 hours before delivery** and is an explicit analytical assumption for this challenge, not a claim about an official market deadline. Change `DECISION_CUTOFF_HOURS_BEFORE_DELIVERY` to configure it.
 
